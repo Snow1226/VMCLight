@@ -47,7 +47,7 @@ public class VMCLightController :MonoBehaviour
     
     public void AddLightData(int lightId)
     {
-        ActiveLightData.lightId = lightId;
+        ActiveLightData.LightId = lightId;
         ActiveLightData.Color = new Color(1f, 1f, 1f, 1f);
         ActiveLightData.Position = new Vector3(0f, 1.5453f, 0f);
         ActiveLightData.Rotation = Quaternion.Euler(130f, 43f, 75f);
@@ -71,7 +71,7 @@ public class VMCLightController :MonoBehaviour
     {
         foreach(SendTask sendTask in _sendTasks)
         {
-            if (sendTask.data.lightId == data.lightId)
+            if (sendTask.data.LightId == data.LightId)
             {
                 _sendTasks.Remove(sendTask);
                 break;

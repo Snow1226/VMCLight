@@ -20,6 +20,7 @@
   <ItemGroup>
     <DependsOn Include="BSIPA" Version="^4.3.0"/>
     <DependsOn Include="Chroma" Version="^2.9.20"/>
+    <DependsOn Include="BeatSaberMarkupLanguage" Version="^1.12.5"/>
   </ItemGroup>
   
   <PropertyGroup>
