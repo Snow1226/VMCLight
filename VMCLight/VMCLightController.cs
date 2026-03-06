@@ -43,6 +43,7 @@ public class VMCLightController :MonoBehaviour
                 break;
             default:
                 inGameCoreScene = false;
+                ActiveLightData.Color = PluginConfig.Instance.BlendColor;
                 break;
         }
         Plugin.Log.Notice($"SceneChanged : {next.name}, inGameCoreScene : {inGameCoreScene}");

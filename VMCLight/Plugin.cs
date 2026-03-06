@@ -16,6 +16,8 @@ internal class Plugin
 {
     public static Plugin Instance  { get; private set; }
     public VMCLightController LightController { get; private set; }
+    
+    public const string GameSceneName = "GameCore";
 
     internal static IpaLogger Log { get; private set; } = null!;
     private Harmony _harmony;
