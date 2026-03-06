@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using VMCLight.Configuration;
 using VMCLight.Osc;
+using VMCLight.UI;
 
 namespace VMCLight;
 
@@ -11,9 +13,10 @@ public class VMCLightController :MonoBehaviour
 {
     public LightData ActiveLightData= new LightData();
     private List<SendTask> _sendTasks = new List<SendTask>();
-    public Color MixColor = new Color(1f, 1f, 1f, 1f);
-    public float BlendLevel = 0.55f;
     public bool inGameCoreScene = false;
+    
+    internal ModMainFlowCoordinator VMCLightMainFlowCoordinator;
+    
     private void Awake()
     {
         GameObject.DontDestroyOnLoad(this);
@@ -23,7 +26,7 @@ public class VMCLightController :MonoBehaviour
     private void Start()
     {
         AddLightData(0);
-        AddSendTask(ActiveLightData);
+        AddSendTask(ActiveLightData, PluginConfig.Instance.VMCProtocolAddress, PluginConfig.Instance.VMCProtocolPort);
     }
     
     private void LateUpdate()
@@ -43,6 +46,12 @@ public class VMCLightController :MonoBehaviour
                 break;
         }
         Plugin.Log.Notice($"SceneChanged : {next.name}, inGameCoreScene : {inGameCoreScene}");
+    }
+
+    public void VMCProtocolReconnect()
+    {
+        RemoveTask(ActiveLightData);
+        AddSendTask(ActiveLightData, PluginConfig.Instance.VMCProtocolAddress, PluginConfig.Instance.VMCProtocolPort);
     }
     
     public void AddLightData(int lightId)

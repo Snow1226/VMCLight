@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using VMCLight.Configuration;
+
 namespace VMCLight.HarmonyPatches;
 
 [HarmonyPatch(typeof(LightWithIdManager), "SetColorForId", MethodType.Normal)]
@@ -11,13 +13,12 @@ public static class InGameLightPatch
         {
             if (Plugin.Instance.LightController.inGameCoreScene)
             {
-                Plugin.Instance.LightController.ActiveLightData.Color = Color.Lerp(color, Plugin.Instance.LightController.MixColor, Plugin.Instance.LightController.BlendLevel);
-                Plugin.Instance.LightController.ActiveLightData.Enabled = color.a == 0f ? false : true;
+                Plugin.Instance.LightController.ActiveLightData.Color = 
+                    Color.Lerp(color, PluginConfig.Instance.BlendColor, PluginConfig.Instance.BlendIntensity);
             }
             else
             {
                 Plugin.Instance.LightController.ActiveLightData.Color = new Color(1f, 1f, 1f, 1f);
-                Plugin.Instance.LightController.ActiveLightData.Enabled = true;
             }
         }
     }
@@ -32,13 +33,12 @@ public static class ChromaLightPatch
         {
             if(Plugin.Instance.LightController.inGameCoreScene)
             {
-                Plugin.Instance.LightController.ActiveLightData.Color = Color.Lerp(color, Plugin.Instance.LightController.MixColor, Plugin.Instance.LightController.BlendLevel);
-                Plugin.Instance.LightController.ActiveLightData.Enabled = color.a <= 0.1f ? false : true;
+                Plugin.Instance.LightController.ActiveLightData.Color = 
+                    Color.Lerp(color, PluginConfig.Instance.BlendColor, PluginConfig.Instance.BlendIntensity);
             }
             else
             {
                 Plugin.Instance.LightController.ActiveLightData.Color = new Color(1f, 1f, 1f, 1f);
-                Plugin.Instance.LightController.ActiveLightData.Enabled = true;
             }
         }
     }

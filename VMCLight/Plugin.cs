@@ -1,9 +1,13 @@
 ﻿using IPA;
+using IPA.Config;
+using IPA.Config.Stores;
 using IPA.Loader;
 using IpaLogger = IPA.Logging.Logger;
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
+using VMCLight.Configuration;
+using VMCLight.UI;
 
 namespace VMCLight;
 
@@ -17,11 +21,11 @@ internal class Plugin
     private Harmony _harmony;
     internal bool existChroma;
     [Init]
-    public Plugin(IpaLogger ipaLogger, PluginMetadata pluginMetadata)
+    public Plugin(Config config,IpaLogger ipaLogger)
     {
         Instance = this;
+        PluginConfig.Instance = config.Generated<Configuration.PluginConfig>();
         Log = ipaLogger;
-        Log.Info($"{pluginMetadata.Name} {pluginMetadata.HVersion} initialized.");
     }
 
     [OnStart]
@@ -32,6 +36,12 @@ internal class Plugin
         _harmony = new Harmony("com.snow1226.beatsaber.vmclight");
         _harmony.PatchAll(Assembly.GetExecutingAssembly());
         LightController = new GameObject("VMCLightController").AddComponent<VMCLightController>();
+        BeatSaberMarkupLanguage.Util.MainMenuAwaiter.MainMenuInitializing += MenuInit;
+    }
+
+    public void MenuInit()
+    {
+        UIManager.Init();
     }
 
     [OnExit]
