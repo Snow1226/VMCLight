@@ -46,7 +46,6 @@ public class VMCLightController :MonoBehaviour
                 ActiveLightData.Color = PluginConfig.Instance.BlendColor;
                 break;
         }
-        Plugin.Log.Notice($"SceneChanged : {next.name}, inGameCoreScene : {inGameCoreScene}");
     }
 
     public void VMCProtocolReconnect()

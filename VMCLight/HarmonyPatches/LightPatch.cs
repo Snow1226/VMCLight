@@ -14,13 +14,11 @@ public static class InGameLightPatch
         {
             if (SceneManager.GetActiveScene().name == Plugin.GameSceneName)
             {
-                Plugin.Log.Notice("harmony GenuCore");
                 Plugin.Instance.LightController.ActiveLightData.Color = 
                     Color.Lerp(color, PluginConfig.Instance.BlendColor, PluginConfig.Instance.BlendIntensity);
             }
             else
             {
-                Plugin.Log.Notice("harmony MenuCore");
                 Plugin.Instance.LightController.ActiveLightData.Color = PluginConfig.Instance.BlendColor;
             }
         }
@@ -36,14 +34,12 @@ public static class ChromaLightPatch
         {
             if (SceneManager.GetActiveScene().name == Plugin.GameSceneName)
             {
-                Plugin.Log.Notice("harmony GenuCore");
                 Plugin.Instance.LightController.ActiveLightData.Color = 
                     Color.Lerp(color, PluginConfig.Instance.BlendColor, PluginConfig.Instance.BlendIntensity);
                 
             }
             else
             {
-                Plugin.Log.Notice("harmony MenuCore");
                 Plugin.Instance.LightController.ActiveLightData.Color = PluginConfig.Instance.BlendColor;
             }
         }
