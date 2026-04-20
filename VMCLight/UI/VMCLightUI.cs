@@ -23,22 +23,22 @@ public class VMCLightUI : BSMLAutomaticViewController
         base.DidDeactivate(removedFromHierarchy, screenSystemDisabling);
     }
 
-    [UIValue("Address")] private string _address = PluginConfig.Instance.VMCProtocolAddress;
+    [UIValue("Address")] private string _address = PluginConfig.Instance.VMCLightProtocolAddress;
 
     [UIAction("OnChangeAddress")]
     private void OnChangeAddress(string value)
     {
         _address = value;
-        PluginConfig.Instance.VMCProtocolAddress = value;
+        PluginConfig.Instance.VMCLightProtocolAddress = value;
     }
 
-    [UIValue("Port")] private string _port = PluginConfig.Instance.VMCProtocolPort.ToString();
+    [UIValue("Port")] private string _port = PluginConfig.Instance.VMCLightProtocolPort.ToString();
 
     [UIAction("OnChangePort")]
     private void OnChangePort(string value)
     {
         _port = value;
-        PluginConfig.Instance.VMCProtocolPort = int.Parse(value);
+        PluginConfig.Instance.VMCLightProtocolPort = int.Parse(value);
     }
     
     [UIValue("BlendColor")] private Color _blendColor = PluginConfig.Instance.BlendColor;

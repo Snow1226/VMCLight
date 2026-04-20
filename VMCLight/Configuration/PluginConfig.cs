@@ -13,11 +13,11 @@ public class PluginConfig
     public static PluginConfig Instance { get; set; }
 
     [NonNullable]
-    public virtual string VMCProtocolAddress { get; set; } = "127.0.0.1";
+    public virtual string VMCLightProtocolAddress { get; set; } = "127.0.0.1";
     [NonNullable]
-    public virtual int VMCProtocolPort { get; set; } = 39540;
+    public virtual int VMCLightProtocolPort { get; set; } = 39840;
     [NonNullable]
     public virtual Color BlendColor { get; set; } = Color.white;
     [NonNullable]
-    public virtual float BlendIntensity { get; set; } = 1.0f;
+    public virtual float BlendIntensity { get; set; } = 0.6f;
 }

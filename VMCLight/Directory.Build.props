@@ -7,7 +7,7 @@
     <PluginId>VMCLight</PluginId>
     <PluginName>VMCLight</PluginName>
     <Authors>Snow1226</Authors>
-    <Version>0.0.3</Version>
+    <Version>0.1.0</Version>
     <GameVersion>1.40.8</GameVersion>
     <Description>Mod that sends lights to VMC via OSC</Description>
     <!--<PluginIcon></PluginIcon>-->
